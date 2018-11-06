@@ -1,0 +1,46 @@
+﻿@using Course = PlanningSystem.Models.Course
+@model List<PlanningSystem.Models.Course>
+@{
+    ViewBag.Title = "Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        <h2 class="pull-left">Onderwijseenheid</h2>
+    </div>
+    <div class="col-md-6 text-center">
+        <span class="pull-right">
+            @Html.ActionLink("Toevoegen", "Create", "Course", new { @class = "btn btn-success" })
+        </span>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Cursus ID</th>
+            <th scope="col">Cursus code</th>
+            <th scope="col">Cursus naam</th>
+            @*<th scope="col">Rol</th>*@
+            <th scope="col">Beschrijving</th>
+
+        </tr>
+    </thead>
+    @foreach (Course i in Model)
+    {
+        <tbody>
+            <tr>
+                <th>@i.courseId</th>
+                <th>@i.courseCode</th>
+                <td>@i.courseName</td>
+                <td>@i.description</td>
+
+                <td>
+                    @Html.ActionLink("Wijzigen", "Edit", "Course", new {id = i.courseId, @class = "btn btn-primary" })
+                    @Html.ActionLink("Verwijderen", "Disable", "Course", new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
